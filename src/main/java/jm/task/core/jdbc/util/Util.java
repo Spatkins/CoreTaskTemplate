@@ -11,17 +11,8 @@ public class Util {
     private static final String USER_LOGIN = "root";
     private static final String USER_PASSWORD = "QP1Abd9ZGtocfeBLic6V";
     private Connection connection = null;
+
     public Connection getConnection() {
-//        Connection connection = null;
-//        try {
-//            Driver driver = new com.mysql.cj.jdbc.Driver();
-//            DriverManager.registerDriver(driver);
-//            connection = DriverManager.getConnection(SERV_CONNECTION, USER_LOGIN, USER_PASSWORD);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return connection;
-//    }
 
         try {
             connection = DriverManager.getConnection(SERV_CONNECTION, USER_LOGIN, USER_PASSWORD);
