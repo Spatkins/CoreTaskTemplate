@@ -80,6 +80,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public List<User> getAllUsers() {
         List<User> usersList = new ArrayList<>();
         try {
+            Util.getConnection().setAutoCommit(false);
             ResultSet resultSet = Util.getConnection().createStatement()
                     .executeQuery("select * from users_table ");
             while (resultSet.next()) {
@@ -88,9 +89,15 @@ public class UserDaoJDBCImpl implements UserDao {
                                        resultSet.getString("lastname"),
                                        resultSet.getByte("age")));
             }
+            Util.getConnection().commit();
             System.out.println(usersList);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                Util.getConnection().rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
         return usersList;
     }
