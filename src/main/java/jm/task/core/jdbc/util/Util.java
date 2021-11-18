@@ -27,7 +27,7 @@ public class Util {
             prop.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
             prop.setProperty("hibernate.show_sql", "true");
             prop.setProperty("hibernate.current_session_context_class", "thread");
-            prop.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+            prop.setProperty("hibernate.hbm2ddl.auto", "update");
             config.setProperties(prop);
             config.addAnnotatedClass(User.class);
             ServiceRegistry service = new StandardServiceRegistryBuilder()
