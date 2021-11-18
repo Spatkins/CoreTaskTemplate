@@ -2,6 +2,7 @@ package jm.task.core.jdbc.util;
 
 import java.util.Properties;
 import jm.task.core.jdbc.model.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -16,7 +17,7 @@ public class Util {
     private static final String USER_PASSWORD = "QP1Abd9ZGtocfeBLic6V";
     private static SessionFactory factory;
 
-    public static SessionFactory getSession() {
+    public static Session getSession() {
         if (factory == null) {
             Configuration config = new Configuration();
             Properties prop = new Properties();
@@ -35,7 +36,7 @@ public class Util {
                     .build();
             factory = config.buildSessionFactory(service);
         }
-        return factory;
+        return factory.getCurrentSession();
     }
 
     public static Connection getConnection() {
