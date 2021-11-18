@@ -2,8 +2,6 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
-
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +32,6 @@ public class UserDaoJDBCImpl implements UserDao {
         try {
             statement = Util.getConnection().createStatement();
             statement.executeUpdate( "DROP TABLE if exists users_table  ");
-
             System.out.println("Table successfully dropped!");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -59,7 +56,6 @@ public class UserDaoJDBCImpl implements UserDao {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-
         }
     }
 
@@ -82,13 +78,13 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public List<User> getAllUsers() {
-
         List<User> usersList = new ArrayList<>();
         try {
             ResultSet resultSet = Util.getConnection().createStatement()
-                    .executeQuery("select name, lastName, age from users_table ");
+                    .executeQuery("select * from users_table ");
             while (resultSet.next()) {
-                usersList.add(new User(resultSet.getString("name"),
+                usersList.add(new User(resultSet.getLong("id"),
+                                       resultSet.getString("name"),
                                        resultSet.getString("lastname"),
                                        resultSet.getByte("age")));
             }

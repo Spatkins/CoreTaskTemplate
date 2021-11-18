@@ -27,11 +27,16 @@ public class User {
         this.lastName = lastName;
         this.age = age;
     }
+    public User(Long id, String name, String lastName, Byte age) {
+        this(name, lastName, age);
+        this.id = id;
+    }
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 '}';
