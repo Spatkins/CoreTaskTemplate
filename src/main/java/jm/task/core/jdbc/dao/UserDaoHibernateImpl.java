@@ -2,6 +2,9 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
+import org.hibernate.HibernateException;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
@@ -27,7 +30,7 @@ public class UserDaoHibernateImpl implements UserDao {
             Util.getSession().save(new User(name, lastName, age));
             Util.getSession().getTransaction().commit();
             System.out.println("User successfully add!" + name);
-        } catch (Exception e) {
+        } catch (HibernateException e) {
             if (Util.getSession() != null) {
             Util.getSession().getTransaction().rollback();
             }
@@ -44,7 +47,7 @@ public class UserDaoHibernateImpl implements UserDao {
         Util.getSession().delete(Util.getSession().get(User.class, id));
         Util.getSession().getTransaction().commit();
         System.out.println("User successfully deleted!" + id);
-    } catch (Exception e) {
+    } catch (HibernateException e) {
         if (Util.getSession() != null) {
             Util.getSession().getTransaction().rollback();
         }
@@ -63,7 +66,7 @@ public class UserDaoHibernateImpl implements UserDao {
         Util.getSession().getTransaction().commit();
         System.out.println(usersList);
         return usersList;
-    } catch (Exception e) {
+    } catch (HibernateException e) {
         if (Util.getSession() != null) {
         Util.getSession().getTransaction().rollback();
         }
@@ -81,7 +84,7 @@ public class UserDaoHibernateImpl implements UserDao {
         Util.getSession().createQuery("delete User").executeUpdate();
         Util.getSession().getTransaction().commit();
         System.out.println("Table successfully cleaned!");
-        } catch (Exception e) {
+        } catch (HibernateException e) {
         if (Util.getSession() != null) {
         Util.getSession().getTransaction().rollback();
         }
