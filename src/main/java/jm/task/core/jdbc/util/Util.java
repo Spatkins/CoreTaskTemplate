@@ -9,13 +9,8 @@ public class Util {
     private static final String USER_LOGIN = "root";
     private static final String USER_PASSWORD = "QP1Abd9ZGtocfeBLic6V";
 
-    public static Connection getConnection() {
-        Connection connection = null;
-        try {
-             connection = DriverManager.getConnection(SERV_CONNECTION, USER_LOGIN, USER_PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public static Connection getConnection() throws SQLException {
+        Connection connection = DriverManager.getConnection(SERV_CONNECTION, USER_LOGIN, USER_PASSWORD);
         return connection;
     }
 }
