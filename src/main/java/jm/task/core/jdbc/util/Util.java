@@ -39,13 +39,7 @@ public class Util {
         return factory.getCurrentSession();
     }
 
-    public static Connection getConnection() {
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(SERV_CONNECTION, USER_LOGIN, USER_PASSWORD);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return connection;
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(SERV_CONNECTION, USER_LOGIN, USER_PASSWORD);
     }
 }
