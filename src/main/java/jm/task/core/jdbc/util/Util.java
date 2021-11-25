@@ -15,6 +15,7 @@ public class Util {
     private static final String SERV_CONNECTION = "jdbc:mysql://localhost:3306/users";
     private static final String USER_LOGIN = "root";
     private static final String USER_PASSWORD = "QP1Abd9ZGtocfeBLic6V";
+    private static  final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static SessionFactory factory;
 
     public static Session getSession() {
@@ -24,7 +25,7 @@ public class Util {
             prop.setProperty("hibernate.connection.url", SERV_CONNECTION);
             prop.setProperty("hibernate.connection.username", USER_LOGIN);
             prop.setProperty("hibernate.connection.password", USER_PASSWORD);
-            prop.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
+            prop.setProperty("hibernate.connection.driver_class", DRIVER);
             prop.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
             prop.setProperty("hibernate.show_sql", "true");
             prop.setProperty("hibernate.current_session_context_class", "thread");
